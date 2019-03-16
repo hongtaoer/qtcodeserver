@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>.%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+
+    <appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/usr/local/qtcode/logs/qtcode.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <FileNamePattern>/usr/local/qtcode/logs/qtcode.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>.%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--<appender name="Sentry" class="net.kencochrane.raven.logback.SentryAppender">-->
+    <!--<dsn>https://publicKey:secretKey@host:port/1?options</dsn>-->
+    <!--<tags>tag1:value1,tag2:value2</tags>-->
+    <!--&lt;!&ndash; Optional, allows to select the ravenFactory &ndash;&gt;-->
+    <!--&lt;!&ndash;<ravenFactory>net.kencochrane.raven.DefaultRavenFactory</ravenFactory>&ndash;&gt;-->
+    <!--</appender>-->
+    <!---->
+    <root level="debug">
+        <appender-ref ref="consoleAppender"/>
+        <appender-ref ref="dailyRollingFileAppender"/>
+    </root>
+
+
+    <!--<springProfile name="dev">-->
+    <!--<logger name="org.springboot.sample" level="DEBUG"/>-->
+    <!--</springProfile>-->
+
+    <!--<springProfile name="staging">-->
+    <!--<logger name="org.springboot.sample" level="INFO"/>-->
+    <!--</springProfile>-->
+
+
+</configuration>

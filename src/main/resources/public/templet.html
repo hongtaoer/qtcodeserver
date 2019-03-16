@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>二维码生成工具</title>
+</head>
+<body marginheight="200">
+
+<div>
+    <p align="center">请填写二维码下方第一行显示的字符串：</p>
+    <p align="center">防伪号:${content.checkNumber}</p>
+    <p align="center">请填写二维码下方第二行显示的字符串：</p>
+    <p align="center">报告文号:皖天桓会审字(${content.year})第${content.number}号</p>
+</div>
+<div>
+    <p>请填写扫描二维码后访问的链接：</p>
+    <p>http://serverIP:port/${content.checkNumber}</p>
+</div>
+
+<div>
+    <p align="center">
+        <button> 点击生成二维码</button>
+    </p>
+
+</div>
